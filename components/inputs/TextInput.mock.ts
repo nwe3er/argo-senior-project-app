@@ -1,7 +1,7 @@
 import { ITextInput } from './TextInput';
 
 const base: ITextInput = {
-  sampleTextProp: 'Hello world!',
+  sampleTextProp: 'Input Text',
 };
 
 export const TextInputProps = {

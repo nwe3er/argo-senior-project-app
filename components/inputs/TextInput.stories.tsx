@@ -19,13 +19,33 @@ const Template: ComponentStory<typeof TextInput> = (args) => (
 export const Base = Template.bind({});
 
 
-export const Placeholder = {
+export const Hover = {
     args:{
-        placeholder: "email@host.com",
-        type: "email",
+        placeholder: "Input Text",
+        type: "Label",
     },
 };
 
+export const Focus = {
+  args:{
+      placeholder: "Input Text",
+      type: "Label",
+  },
+};
+
+export const Error = {
+  args:{
+      placeholder: "Input Text",
+      type: "Label",
+  },
+};
+
+export const Disabled = {
+  args:{
+      placeholder: "Input Text",
+      type: "Label",
+  },
+};
 
 
 
