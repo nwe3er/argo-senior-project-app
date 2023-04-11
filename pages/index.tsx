@@ -6,14 +6,48 @@ import React, { useRef, useState } from 'react';
 import SelectCountry from '../components/DropDown/SelectCountry';
 
 
-const data = [
+/*const data = [
   { x: 4492000, y: 10 },
   { x: 4550000, y: 20 },
   { x: 4591000, y: 30 },
   { x: 3, y: 40 },
   { x: 4, y: 50 },
+]; */
+
+const data = [  { name: 'Confirmed Cases', data: [4492000, 4550000, 4591000] },
+  { name: 'Deaths', data: [100000, 105000, 110000] },
 ];
 
+const options: Highcharts.Options = {
+  chart: {
+    type: 'line'
+  },
+  title: {
+    text: 'US 2023 Covid Status',
+  },
+  xAxis: {
+    categories: ['January', 'February', 'March'],
+    title: {
+      text: 'X Axis Label'
+    }
+  },
+  yAxis: {
+    title: {
+      text: 'Y Axis Label'
+    }
+  },
+  series: [{
+    type: 'line',
+    name: 'Confirmed Cases',
+    data: [
+      [1, 4492000],
+      [2, 4550000],
+      [3, 4591000]
+    ]
+  }]
+};
+
+/*
 const options: Highcharts.Options = {
   chart: {
     type: 'line'
@@ -41,8 +75,8 @@ const options: Highcharts.Options = {
   /*series: [{
     name: 'My Series',
     data: data.map(({ x, y }) => [x, y])
-  }] as Highcharts.SeriesOptionsType[]*/
-};
+  }] as Highcharts.SeriesOptionsType[]
+}; 
 
 const options2: Highcharts.Options = {
   chart: {
@@ -71,8 +105,33 @@ const options2: Highcharts.Options = {
   /*series: [{
     name: 'My Series',
     data: data.map(({ x, y }) => [x, y])
-  }] as Highcharts.SeriesOptionsType[]*/
-};
+  }] as Highcharts.SeriesOptionsType[]
+}; */
+
+const options2 = {
+  chart: {
+    type: 'bar'
+  },
+  title: {
+    text: '',
+  },
+  xAxis: {
+    categories: ['January', 'February', 'March'],
+    title: {
+      text: 'X Axis Label'
+    }
+  },
+  yAxis: {
+    title: {
+      text: 'Y Axis Label'
+    }
+  },
+  series: [{
+    name: 'Confirmed Deaths',
+    data: [49447, 50558, 51347]
+  }
+  ] as const
+} as const;
 
 
 const Home: NextPageWithLayout = (props: HighchartsReact.Props) => {
