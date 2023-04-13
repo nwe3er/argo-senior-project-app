@@ -3,7 +3,7 @@ Content-Type: application/json
 Accept: application/json
 
 {
-    "searchTerm":"something not found"
+    "searchTerm":"cats"
 }
 
 // search for cat 
