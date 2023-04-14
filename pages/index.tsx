@@ -1,5 +1,3 @@
-import PrimaryLayout from '../components/layouts/primary/PrimaryLayout';
-import SidebarLayout from '../components/layouts/sidebar/SidebarLayout';
 import { NextPageWithLayout } from './page';
 
 import * as Highcharts from 'highcharts';
@@ -314,7 +312,7 @@ const Home: NextPageWithLayout = (props: HighchartsReact.Props) => {
 
 export default Home;
 
-
+/*
 Home.getLayout = (page) => {
   return (
     <PrimaryLayout>
@@ -322,4 +320,4 @@ Home.getLayout = (page) => {
       {page}
     </PrimaryLayout>
   );
-};
+}; */
