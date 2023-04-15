@@ -13,61 +13,84 @@ import ICUTrendCard from './ICUTrendCard';
 import StaffAbsencesCard from './StaffAbsencesCard';
 
 export default class App extends React.Component {
-
-    render() {
-        return (
-            <Container>
-                <Grid container spacing={3}>
-                    <Grid item xs={12}>
-                        <Typography variant="h5">Scotland Overview</Typography>
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                        <SingleKPICard title="Total number of confirmed cases in Scotland" query={queries.QUERY_TOTAL_CONFIRMED_CASES_SCOTLAND} />
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                        <SingleKPICard title="Latest daily number of confirmed cases in Scotland" query={queries.QUERY_DAILY_CHANGE_CONFIRMED_CASES_SCOTLAND} />
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                        <SingleKPICard title="Total number of tests in Scotland" query={queries.QUERY_TOTAL_TESTS_SCOTLAND} />
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                        <SingleKPICard title="Latest daily number of tests in Scotland" query={queries.QUERY_DAILY_CHANGE_TESTS_SCOTLAND} />
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                        <SingleKPICard title="Total number of deaths in Scotland" query={queries.QUERY_TOTAL_DEATHS_SCOTLAND} />
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                        <SingleKPICard title="Latest daily number of deaths in Scotland" query={queries.QUERY_DAILY_CHANGE_DEATHS_SCOTLAND} />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <CountryCharts />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <DailyChangeCasesCard title="Daily Change of Confirmed Cases in Scotland (past 60 days)" />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <ICUTrendCard title="Scotland Intensive Care (ICU) Utilisation" query="2141" />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <StaffAbsencesCard title="Scotland Hospital Staff Absences" query="2141" />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Typography variant="h5">Scotland Regions</Typography>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TopAreasTable />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <AreasCharts />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Typography variant="h5">United Kingdom Overview</Typography>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TopCountriesTable />
-                    </Grid>
-                </Grid>
-            </Container>
-        );
-    }
+  render() {
+    return (
+      <Container>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <Typography variant="h5">USA Overview</Typography>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <SingleKPICard
+              title="Total number of confirmed cases in USA"
+              query={queries.QUERY_TOTAL_CONFIRMED_CASES_SCOTLAND}
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <SingleKPICard
+              title="Latest daily number of confirmed cases in USA"
+              query={queries.QUERY_DAILY_CHANGE_CONFIRMED_CASES_SCOTLAND}
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <SingleKPICard
+              title="Total number of tests in USA"
+              query={queries.QUERY_TOTAL_TESTS_SCOTLAND}
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <SingleKPICard
+              title="Latest daily number of tests in USA"
+              query={queries.QUERY_DAILY_CHANGE_TESTS_SCOTLAND}
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <SingleKPICard
+              title="Total number of deaths in USA"
+              query={queries.QUERY_TOTAL_DEATHS_SCOTLAND}
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <SingleKPICard
+              title="Latest daily number of deaths in USA"
+              query={queries.QUERY_DAILY_CHANGE_DEATHS_SCOTLAND}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <CountryCharts />
+          </Grid>
+          <Grid item xs={12}>
+            <DailyChangeCasesCard title="Daily Change of Confirmed Cases in USA (past 60 days)" />
+          </Grid>
+          <Grid item xs={12}>
+            <ICUTrendCard
+              title="USA Intensive Care (ICU) Utilisation"
+              query="2141"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <StaffAbsencesCard
+              title="USA Hospital Staff Absences"
+              query="2141"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <Typography variant="h5">USA Regions</Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <TopAreasTable />
+          </Grid>
+          <Grid item xs={12}>
+            <AreasCharts />
+          </Grid>
+          <Grid item xs={12}>
+            <Typography variant="h5">Canada Overview</Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <TopCountriesTable />
+          </Grid>
+        </Grid>
+      </Container>
+    );
+  }
 }
