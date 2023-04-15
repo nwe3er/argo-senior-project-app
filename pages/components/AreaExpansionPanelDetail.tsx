@@ -39,7 +39,7 @@ export default class AreaExpansionPanelDetail extends React.Component<{ area?: s
             ])
             .then(axios.spread((total_cases, regional_hospitalizations) => {
 
-                let _build_data = [];
+                let _build_data: { [key: string]: any }[] = [];
                 // hyrate array of JSON object with rows based on the columns
                 _.map(total_cases.data.rows, function (r) {
                     _build_data.push(_.mapKeys(r, function (v, k) {

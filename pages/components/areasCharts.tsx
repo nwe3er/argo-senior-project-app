@@ -1,10 +1,9 @@
-import React from "react";
-import { TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, LinearProgress, Card, CardHeader, CardContent } from "@material-ui/core";
+import { Card, CardContent, CardHeader, LinearProgress } from "@material-ui/core";
 import axios from 'axios';
 import * as _ from 'lodash';
-import numeral from 'numeral';
-import { ResponsiveContainer, Brush, LineChart, Line, Legend, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
 import moment from 'moment';
+import React from "react";
+import { Brush, CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import seedColor from 'seed-color';
 
 const query = `
@@ -46,7 +45,7 @@ export default class AreasCharts extends React.Component {
         axios.get(baseURL)
             .then(response => {
 
-                let _build_data = [];
+                let _build_data: { [key: string]: any }[] = [];
                 // hyrate array of JSON object with rows based on the columns
                 _.map(response.data.rows, function (r) {
                     _build_data.push(_.mapKeys(r, function (v, k) {
@@ -71,7 +70,7 @@ export default class AreasCharts extends React.Component {
                         <ResponsiveContainer width='100%' height={500}>
                             <LineChart>
                                 {_.map(this.state.data, function (data, k) {
-                                    return <Line key={k} dataKey="TotalCases" name={k} data={data} stroke={seedColor(k).toHex()} />
+                                    return <Line key={k} dataKey="TotalCases" name={k.toString()} data={data} stroke={seedColor(k.toString()).toHex()} />
                                 })}
                                 <Legend />
                                 <Tooltip />

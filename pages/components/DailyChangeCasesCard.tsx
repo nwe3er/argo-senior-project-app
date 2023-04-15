@@ -16,7 +16,7 @@ export default class DailyChangeCasesCard extends React.Component<{ title: strin
     componentDidMount() {
         axios.get(utilities.createbaseURLWithQuery(queries.QUERY_DAILY_CHANGE_CASES_SCOTLAND))
             .then(response => {
-                let _build_data = [];
+                let _build_data: { [key: string]: any }[] = [];
                 // hyrate array of JSON object with rows based on the columns
                 _.map(response.data.rows, function (r) {
                     _build_data.push(_.mapKeys(r, function (v, k) {

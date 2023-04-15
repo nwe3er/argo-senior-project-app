@@ -76,7 +76,7 @@ function createBaseWithDB(db: string): string {
 
 const baseURL = createBaseWithDB('covid-19-uk') + '?sql=' + encodeURIComponent(query);
 
-function singleCountryChart(title, data) {
+function singleCountryChart(title: string, data: any[]) {
   return (
     <Card>
       <CardHeader subheader={title} />
@@ -115,7 +115,7 @@ export default class CountryCharts extends React.Component {
     axios.get(baseURL)
       .then(response => {
 
-        let _build_data = [];
+        let _build_data: { [key: string]: any }[] = [];
         // hyrate array of JSON object with rows based on the columns
         _.map(response.data.rows, function (r) {
           _build_data.push(_.mapKeys(r, function (v, k) {
@@ -130,6 +130,7 @@ export default class CountryCharts extends React.Component {
       })
   }
 
+  
   render() {
 
     if (this.state.loading) {

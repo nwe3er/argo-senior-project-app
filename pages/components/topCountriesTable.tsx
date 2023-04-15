@@ -1,11 +1,9 @@
-import { ExpansionPanel, ExpansionPanelDetails, Typography, ExpansionPanelSummary, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import axios from 'axios';
 import * as _ from 'lodash';
 import numeral from 'numeral';
 import React from 'react';
-import AreaExpansionPanelDetail from './AreaExpansionPanelDetail';
 
 
 let query = `
@@ -110,7 +108,7 @@ export default class TopCountriesTable extends React.Component {
     axios.get(baseURL)
       .then(response => {
 
-        let _build_data = [];
+        let _build_data: { [key: string]: any }[] = [];
         // hyrate array of JSON object with rows based on the columns
         _.map(response.data.rows, function (r) {
           _build_data.push(_.mapKeys(r, function (v, k) {
@@ -143,11 +141,11 @@ export default class TopCountriesTable extends React.Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {this.state.data.map(row => <TableRow key={(row.Date + row.Country)}>
-                <TableCell>{mapCountryToEmojiFlag(row.Country)} {row.Country}</TableCell>
-                <TableCell>{numeral(row.ConfirmedCases).format('0,0')}</TableCell>
-                <TableCell>{numeral(row.Tests).format('0,0')}</TableCell>
-                <TableCell>{numeral(row.Deaths).format('0,0')}</TableCell>
+              {this.state.data.map(row => <TableRow key={(row['Date'] + row['Country'])}>
+                <TableCell>{mapCountryToEmojiFlag(row['Country'])} {row['Country']}</TableCell>
+                <TableCell>{numeral(row['ConfirmedCases']).format('0,0')}</TableCell>
+                <TableCell>{numeral(row['Tests']).format('0,0')}</TableCell>
+                <TableCell>{numeral(row['Deaths']).format('0,0')}</TableCell>
                 {/* <TableCell>{row.Date}</TableCell> */}
               </TableRow>)}
             </TableBody>

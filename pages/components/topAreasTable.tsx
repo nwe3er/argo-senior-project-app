@@ -1,11 +1,11 @@
-import { ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, LinearProgress, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@material-ui/core';
+import { ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, LinearProgress, Typography } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import axios from 'axios';
 import * as _ from 'lodash';
 import numeral from 'numeral';
 import React from "react";
-import AreaExpansionPanelDetail from './AreaExpansionPanelDetail';
 import ReactGA from 'react-ga';
+import AreaExpansionPanelDetail from './AreaExpansionPanelDetail';
 
 const query = `
 SELECT
@@ -40,7 +40,7 @@ export default class TopAreasTable extends React.Component {
         loading: true
     }
 
-    handleExpansionChange = (areaCode, areaName) => (event, isExpanded) => {
+    handleExpansionChange = (areaCode: string, areaName: string) => (event: React.ChangeEvent<{}>, isExpanded: boolean) => {
         ReactGA.event({
             category: 'Area Expansion',
             action: isExpanded ? 'opened' : 'closed',
@@ -54,7 +54,7 @@ export default class TopAreasTable extends React.Component {
         axios.get(baseURL)
             .then(response => {
 
-                let _build_data = [];
+                let _build_data: { [key: string]: any }[] = [];
                 // hyrate array of JSON object with rows based on the columns
                 _.map(response.data.rows, function (r) {
                     _build_data.push(_.mapKeys(r, function (v, k) {
@@ -96,13 +96,13 @@ export default class TopAreasTable extends React.Component {
                 </TableContainer> */}
 
                 {this.state.data.map(row =>
-                    <ExpansionPanel key={(row.AreaCode)} TransitionProps={{ unmountOnExit: true }} onChange={this.handleExpansionChange(row.AreaCode, row.Area)}>
+                    <ExpansionPanel key={(row['AreaCode'])} TransitionProps={{ unmountOnExit: true }} onChange={this.handleExpansionChange(row['AreaCode'], row['Area'])}>
                         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                            <Typography style={{ flexBasis: '80%' }}>{row.Area}</Typography>
-                            <Typography style={{ color: '#AAA' }}>Confirmed Cases: {numeral(row.TotalCases).format('0,0')}</Typography>
+                            <Typography style={{ flexBasis: '80%' }}>{row['Area']}</Typography>
+                            <Typography style={{ color: '#AAA' }}>Confirmed Cases: {numeral(row['TotalCases']).format('0,0')}</Typography>
                         </ExpansionPanelSummary>
                         <ExpansionPanelDetails>
-                            <AreaExpansionPanelDetail areaCode={row.AreaCode} area={row.Area} />
+                            <AreaExpansionPanelDetail areaCode={row['AreaCode']} area={row['Area']} />
                         </ExpansionPanelDetails>
                     </ExpansionPanel>
                 )}

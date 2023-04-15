@@ -8,7 +8,7 @@ import * as CHART_COLORS from '../utils/chartcolors';
 export default class StaffAbsencesCard extends React.Component<{ title: string, query: any }> {
 
     state = {
-        value: 0,
+        value: [],
         ready: false
     }
 
