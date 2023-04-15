@@ -1,0 +1,47 @@
+.bluebox {
+  background: rgba(15, 223, 152, 0.1);
+  width: 188px;
+  height: 83px;
+}
+
+.bluecircle {
+  margin-left: 6px;
+  margin-bottom:5px;
+  margin-top: 5px;
+  height: 11px;
+  width: 11px;
+  background: #7DB249;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.bluetitle {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: rgba(125, 178, 73, 1);
+  margin-bottom: 7px;
+}
+
+.total {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  margin-bottom: 4px;
+  /* identical to box height */
+  color: rgba(217, 217, 217, 1)
+}
+
+.remaining {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  /* identical to box height */
+  color: #868788;
+}
