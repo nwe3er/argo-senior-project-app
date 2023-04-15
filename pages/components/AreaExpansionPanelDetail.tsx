@@ -18,7 +18,7 @@ export default class AreaExpansionPanelDetail extends React.Component<{ area?: s
         data_regional_hospitalizatons: []
     }
 
-    constructor(props) {
+    constructor(props: any) {
 
         super(props);
         this.state = {
@@ -33,8 +33,8 @@ export default class AreaExpansionPanelDetail extends React.Component<{ area?: s
             .all([
                 axios.get(utilities.createbaseURLWithQuery(
                     queries.QUERY_TOTAL_CASES_BY_AREA
-                        .replace('##AREA##', this.props.area)
-                        .replace('##AREACODE##', this.props.areaCode))),
+                        .replace('##AREA##', this.props.area ?? '')
+                        .replace('##AREACODE##', this.props.areaCode ?? ''))),
                 axios.get('https://raw.githubusercontent.com/watty62/Scot_covid19/master/data/processed/regional_hospitalisations.csv')
             ])
             .then(axios.spread((total_cases, regional_hospitalizations) => {
