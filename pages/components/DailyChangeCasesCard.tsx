@@ -12,7 +12,7 @@ export default class DailyChangeCasesCard extends React.Component<{ title: strin
         data: [],
         ready: false
     }
-
+//blank
     componentDidMount() {
         axios.get(utilities.createbaseURLWithQuery(queries.QUERY_DAILY_CHANGE_CASES_SCOTLAND))
             .then(response => {
