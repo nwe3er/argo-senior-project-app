@@ -22,7 +22,7 @@ const SidebarLayout: React.FC<ISidebarLayout> = () => {
       </div>
 
 
-      <Link href="/" className={styles.navLink}>
+      <Link href="/cat" className={styles.navLink}>
       <Image  
             src="/home.png"
             alt="home icon"
@@ -31,7 +31,7 @@ const SidebarLayout: React.FC<ISidebarLayout> = () => {
             height="12"
       />
         Home</Link>
-        <Link href="/" className={styles.navLink}>
+        <Link href="/about" className={styles.navLink}>
       <Image  
             src="/info.png"
             alt="info icon"
@@ -49,7 +49,7 @@ const SidebarLayout: React.FC<ISidebarLayout> = () => {
             height="12"
       />
         Reports</Link>
-        <Link href="/" className={styles.navLink}>
+        <Link href="/hospital" className={styles.navLink}>
       <Image  
             src="/calendar.png"
             alt="Schedule icon"
