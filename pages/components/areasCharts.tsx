@@ -1,23 +1,23 @@
 import {
-  Card,
-  CardContent,
-  CardHeader,
-  LinearProgress,
+    Card,
+    CardContent,
+    CardHeader,
+    LinearProgress,
 } from '@material-ui/core';
 import axios from 'axios';
 import * as _ from 'lodash';
 import moment from 'moment';
 import React from 'react';
 import {
-  Brush,
-  CartesianGrid,
-  Legend,
-  Line,
-  LineChart,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
+    Brush,
+    CartesianGrid,
+    Legend,
+    Line,
+    LineChart,
+    ResponsiveContainer,
+    Tooltip,
+    XAxis,
+    YAxis,
 } from 'recharts';
 import seedColor from 'seed-color';
 
@@ -74,7 +74,7 @@ export default class AreasCharts extends React.Component {
   render() {
     return (
       <Card>
-        <CardHeader subheader="Cases by Regions" />
+        <CardHeader subheader="Cases by Regions (WORK IN PROGRESS)" />
         {this.state.ready ? (
           <CardContent>
             <ResponsiveContainer width="100%" height={500}>

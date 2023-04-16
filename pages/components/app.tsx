@@ -85,7 +85,7 @@ export default class App extends React.Component {
           </Grid>
           <Grid item xs={12}>
             <Typography variant="h5">
-              Countries with the most Confirmed Cases
+              European Countries Covid Data
             </Typography>
           </Grid>
           <Grid item xs={12}>
