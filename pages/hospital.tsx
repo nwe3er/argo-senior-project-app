@@ -2,7 +2,9 @@ import options from '@/components/HighCharts/barChart';
 import lengthOfStay from '@/components/HighCharts/containerChart';
 import mortalityRate from '@/components/HighCharts/lineChart';
 import cost from '@/components/HighCharts/radiusPieChart';
+import Button from '@material-ui/core/Button';
 import { Box, Typography } from '@mui/material';
+import { action } from '@storybook/addon-actions';
 import * as Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import { useRef } from 'react';
@@ -52,6 +54,15 @@ const Hospital: NextPageWithLayout = (props: HighchartsReact.Props) => {
             ref={chartComponentRef}
             {...props}
           />
+        </Box>
+        <Box>
+        <Button
+          color="primary"
+          onClick={action('Secondary button clicked')}
+          variant="contained"
+        >
+          Secondary
+        </Button>
         </Box>
       </Box>
     </Box>
