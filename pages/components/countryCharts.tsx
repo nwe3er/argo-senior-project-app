@@ -1,9 +1,24 @@
-import { Card, CardContent, CardHeader, LinearProgress } from '@material-ui/core';
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  LinearProgress,
+} from '@material-ui/core';
 import axios from 'axios';
 import * as _ from 'lodash';
 import moment from 'moment';
-import React from "react";
-import { Brush, CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import React from 'react';
+import {
+  Brush,
+  CartesianGrid,
+  Legend,
+  Line,
+  LineChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from 'recharts';
 import * as colors from '../utils/chartcolors';
 
 const query = `
@@ -71,21 +86,32 @@ function formatDateLabel(label: string): string {
 }
 
 function createBaseWithDB(db: string): string {
-  return 'https://covid-19-uk-datasette-65tzkjlxkq-ew.a.run.app/' + db + '.json';
+  return (
+    'https://covid-19-uk-datasette-65tzkjlxkq-ew.a.run.app/' + db + '.json'
+  );
 }
 
-const baseURL = createBaseWithDB('covid-19-uk') + '?sql=' + encodeURIComponent(query);
+const baseURL =
+  createBaseWithDB('covid-19-uk') + '?sql=' + encodeURIComponent(query);
 
 function singleCountryChart(title: string, data: any[]) {
   return (
     <Card>
       <CardHeader subheader={title} />
       <CardContent>
-        <ResponsiveContainer width='100%' height={350}>
+        <ResponsiveContainer width="100%" height={350}>
           <LineChart>
-            <Line dataKey="ConfirmedCases" data={data} stroke={colors.COLOR_CONFIRMED_CASES_HEX} />
+            <Line
+              dataKey="ConfirmedCases"
+              data={data}
+              stroke={colors.COLOR_CONFIRMED_CASES_HEX}
+            />
             <Line dataKey="Tests" data={data} stroke={colors.COLOR_TESTS_HEX} />
-            <Line dataKey="Deaths" data={data} stroke={colors.COLOR_DEATHS_HEX} />
+            <Line
+              dataKey="Deaths"
+              data={data}
+              stroke={colors.COLOR_DEATHS_HEX}
+            />
             <Legend />
             <Tooltip />
             <CartesianGrid strokeDasharray="5 5" />
@@ -100,47 +126,46 @@ function singleCountryChart(title: string, data: any[]) {
         </ResponsiveContainer>
       </CardContent>
     </Card>
-  )
+  );
 }
 
 export default class CountryCharts extends React.Component {
-
   state = {
     data: [],
-    loading: true
-  }
+    loading: true,
+  };
 
   componentDidMount() {
-
-    axios.get(baseURL)
-      .then(response => {
-
-        let _build_data: { [key: string]: any }[] = [];
-        // hyrate array of JSON object with rows based on the columns
-        _.map(response.data.rows, function (r) {
-          _build_data.push(_.mapKeys(r, function (v, k) {
+    axios.get(baseURL).then((response) => {
+      let _build_data: { [key: string]: any }[] = [];
+      // hyrate array of JSON object with rows based on the columns
+      _.map(response.data.rows, function (r) {
+        _build_data.push(
+          _.mapKeys(r, function (v, k) {
             return response.data.columns[k];
-          }))
-        });
+          })
+        );
+      });
 
-        this.setState({
-          data: _.groupBy(_build_data, 'Country'),
-          loading: false
-        });
-      })
+      this.setState({
+        data: _.groupBy(_build_data, 'Country'),
+        loading: false,
+      });
+    });
   }
 
-  
   render() {
-
     if (this.state.loading) {
-      return <LinearProgress />
+      return <LinearProgress />;
     }
 
     return (
       <div>
-        {singleCountryChart('Scotland Confirmed Cases, Tests and Deaths', this.state.data['Scotland'])}
+        {singleCountryChart(
+          'USA Confirmed Cases, Tests and Deaths',
+          this.state.data['Scotland']
+        )}
       </div>
-    )
+    );
   }
 }

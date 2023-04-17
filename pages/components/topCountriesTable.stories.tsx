@@ -3,10 +3,11 @@ import Chart from '../components/topCountriesTable';
 
 export default {
   component: Chart,
+  title: 'HighCharts',
 } as Meta;
 
-export const Primary: Story = (args) => <Chart {...args} />;
-Primary.args = {
+export const TopCountryCharts: Story = (args) => <Chart {...args} />;
+TopCountryCharts.args = {
   label: 'Button',
   primary: true,
 };

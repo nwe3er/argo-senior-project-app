@@ -1,10 +1,17 @@
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
+import {
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from '@material-ui/core';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import axios from 'axios';
 import * as _ from 'lodash';
 import numeral from 'numeral';
 import React from 'react';
-
 
 let query = `
 with _confirmed AS (
@@ -73,14 +80,16 @@ with _confirmed AS (
 `;
 
 function createBaseWithDB(db: string): string {
-  return 'https://covid-19-uk-datasette-65tzkjlxkq-ew.a.run.app/' + db + '.json';
+  return (
+    'https://covid-19-uk-datasette-65tzkjlxkq-ew.a.run.app/' + db + '.json'
+  );
 }
 
-const baseURL = createBaseWithDB('covid-19-uk') + '?sql=' + encodeURIComponent(query);
+const baseURL =
+  createBaseWithDB('covid-19-uk') + '?sql=' + encodeURIComponent(query);
 
 function mapCountryToEmojiFlag(country: String): String {
-
-  let flag = '🇬🇧';
+  let flag = '🏴󠁧󠁢󠁳󠁣󠁴󠁿';
   switch (country) {
     case 'Scotland':
       flag = '🏴󠁧󠁢󠁳󠁣󠁴󠁿';
@@ -93,38 +102,35 @@ function mapCountryToEmojiFlag(country: String): String {
       break;
   }
 
-  return flag ? flag : '🇬🇧';
+  return flag ? flag : '🏴󠁧󠁢󠁳󠁣󠁴󠁿';
 }
 
 export default class TopCountriesTable extends React.Component {
-
   state = {
     data: [],
-    loading: true
-  }
+    loading: true,
+  };
 
   componentDidMount() {
-
-    axios.get(baseURL)
-      .then(response => {
-
-        let _build_data: { [key: string]: any }[] = [];
-        // hyrate array of JSON object with rows based on the columns
-        _.map(response.data.rows, function (r) {
-          _build_data.push(_.mapKeys(r, function (v, k) {
+    axios.get(baseURL).then((response) => {
+      let _build_data: { [key: string]: any }[] = [];
+      // hyrate array of JSON object with rows based on the columns
+      _.map(response.data.rows, function (r) {
+        _build_data.push(
+          _.mapKeys(r, function (v, k) {
             return response.data.columns[k];
-          }))
-        });
+          })
+        );
+      });
 
-        this.setState({ data: _build_data });
-        this.setState({ loading: false });
-      })
+      this.setState({ data: _build_data });
+      this.setState({ loading: false });
+    });
   }
 
   render() {
-
     if (this.state.loading) {
-      return <LinearProgress />
+      return <LinearProgress />;
     }
 
     return (
@@ -141,19 +147,23 @@ export default class TopCountriesTable extends React.Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {this.state.data.map(row => <TableRow key={(row['Date'] + row['Country'])}>
-                <TableCell>{mapCountryToEmojiFlag(row['Country'])} {row['Country']}</TableCell>
-                <TableCell>{numeral(row['ConfirmedCases']).format('0,0')}</TableCell>
-                <TableCell>{numeral(row['Tests']).format('0,0')}</TableCell>
-                <TableCell>{numeral(row['Deaths']).format('0,0')}</TableCell>
-                {/* <TableCell>{row.Date}</TableCell> */}
-              </TableRow>)}
+              {this.state.data.map((row) => (
+                <TableRow key={row['Date'] + row['Country']}>
+                  <TableCell>
+                    {mapCountryToEmojiFlag(row['Country'])} {row['Country']}
+                  </TableCell>
+                  <TableCell>
+                    {numeral(row['ConfirmedCases']).format('0,0')}
+                  </TableCell>
+                  <TableCell>{numeral(row['Tests']).format('0,0')}</TableCell>
+                  <TableCell>{numeral(row['Deaths']).format('0,0')}</TableCell>
+                  {/* <TableCell>{row.Date}</TableCell> */}
+                </TableRow>
+              ))}
             </TableBody>
           </Table>
         </TableContainer>
-
       </div>
-    )
+    );
   }
-
 }

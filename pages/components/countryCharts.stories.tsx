@@ -3,10 +3,11 @@ import Chart from '../components/countryCharts';
 
 export default {
   component: Chart,
+  title: 'HighCharts',
 } as Meta;
 
-export const Primary: Story = (args) => <Chart {...args} />;
-Primary.args = {
+export const CountryCharts: Story = (args) => <Chart {...args} />;
+CountryCharts.args = {
   label: 'Button',
   primary: true,
 };

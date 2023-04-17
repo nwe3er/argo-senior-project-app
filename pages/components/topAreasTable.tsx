@@ -1,9 +1,15 @@
-import { ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, LinearProgress, Typography } from '@material-ui/core';
+import {
+  ExpansionPanel,
+  ExpansionPanelDetails,
+  ExpansionPanelSummary,
+  LinearProgress,
+  Typography,
+} from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import axios from 'axios';
 import * as _ from 'lodash';
 import numeral from 'numeral';
-import React from "react";
+import React from 'react';
 import ReactGA from 'react-ga';
 import AreaExpansionPanelDetail from './AreaExpansionPanelDetail';
 
@@ -16,7 +22,7 @@ SELECT
 FROM
   cases
 WHERE
-  Country = 'Scotland'
+  Country = 'x'
   AND Date = (
     SELECT
       MAX(Date)
@@ -28,55 +34,55 @@ ORDER BY
 `;
 
 function createBaseWithDB(db: string): string {
-    return 'https://covid-19-uk-datasette-65tzkjlxkq-ew.a.run.app/' + db + '.json';
+  return (
+    'https://covid-19-uk-datasette-65tzkjlxkq-ew.a.run.app/' + db + '.json'
+  );
 }
 
-const baseURL = createBaseWithDB('covid-19-uk') + '?sql=' + encodeURIComponent(query);
+const baseURL =
+  createBaseWithDB('covid-19-uk') + '?sql=' + encodeURIComponent(query);
 
 export default class TopAreasTable extends React.Component {
+  state = {
+    data: [],
+    loading: true,
+  };
 
-    state = {
-        data: [],
-        loading: true
-    }
-
-    handleExpansionChange = (areaCode: string, areaName: string) => (event: React.ChangeEvent<{}>, isExpanded: boolean) => {
-        ReactGA.event({
-            category: 'Area Expansion',
-            action: isExpanded ? 'opened' : 'closed',
-            label: areaCode + ' ' + areaName
-        })
-
+  handleExpansionChange =
+    (areaCode: string, areaName: string) =>
+    (event: React.ChangeEvent<{}>, isExpanded: boolean) => {
+      ReactGA.event({
+        category: 'Area Expansion',
+        action: isExpanded ? 'opened' : 'closed',
+        label: areaCode + ' ' + areaName,
+      });
     };
 
-    componentDidMount() {
+  componentDidMount() {
+    axios.get(baseURL).then((response) => {
+      let _build_data: { [key: string]: any }[] = [];
+      // hyrate array of JSON object with rows based on the columns
+      _.map(response.data.rows, function (r) {
+        _build_data.push(
+          _.mapKeys(r, function (v, k) {
+            return response.data.columns[k];
+          })
+        );
+      });
 
-        axios.get(baseURL)
-            .then(response => {
+      this.setState({ data: _build_data });
+      this.setState({ loading: false });
+    });
+  }
 
-                let _build_data: { [key: string]: any }[] = [];
-                // hyrate array of JSON object with rows based on the columns
-                _.map(response.data.rows, function (r) {
-                    _build_data.push(_.mapKeys(r, function (v, k) {
-                        return response.data.columns[k];
-                    }))
-                });
-
-                this.setState({ data: _build_data });
-                this.setState({ loading: false });
-            })
+  render() {
+    if (this.state.loading) {
+      return <LinearProgress />;
     }
 
-
-    render() {
-
-        if (this.state.loading) {
-            return <LinearProgress />
-        }
-
-        return (
-            <div>
-                {/* <TableContainer component={Paper}>
+    return (
+      <div>
+        {/* <TableContainer component={Paper}>
                     <Table size="small">
                         <TableHead>
                             <TableRow>
@@ -95,18 +101,29 @@ export default class TopAreasTable extends React.Component {
                     </Table>
                 </TableContainer> */}
 
-                {this.state.data.map(row =>
-                    <ExpansionPanel key={(row['AreaCode'])} TransitionProps={{ unmountOnExit: true }} onChange={this.handleExpansionChange(row['AreaCode'], row['Area'])}>
-                        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                            <Typography style={{ flexBasis: '80%' }}>{row['Area']}</Typography>
-                            <Typography style={{ color: '#AAA' }}>Confirmed Cases: {numeral(row['TotalCases']).format('0,0')}</Typography>
-                        </ExpansionPanelSummary>
-                        <ExpansionPanelDetails>
-                            <AreaExpansionPanelDetail areaCode={row['AreaCode']} area={row['Area']} />
-                        </ExpansionPanelDetails>
-                    </ExpansionPanel>
-                )}
-            </div>
-        )
-    }
+        {this.state.data.map((row) => (
+          <ExpansionPanel
+            key={row['AreaCode']}
+            TransitionProps={{ unmountOnExit: true }}
+            onChange={this.handleExpansionChange(row['AreaCode'], row['Area'])}
+          >
+            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+              <Typography style={{ flexBasis: '80%' }}>
+                {row['Area']}
+              </Typography>
+              <Typography style={{ color: '#AAA' }}>
+                Confirmed Cases: {numeral(row['TotalCases']).format('0,0')}
+              </Typography>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <AreaExpansionPanelDetail
+                areaCode={row['AreaCode']}
+                area={row['Area']}
+              />
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+        ))}
+      </div>
+    );
+  }
 }
