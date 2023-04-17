@@ -30,16 +30,7 @@ const SidebarLayout: React.FC<ISidebarLayout> = () => {
             width="12"
             height="12"
       />
-        Home</Link>
-        <Link href="/about" className={styles.navLink}>
-      <Image  
-            src="/info.png"
-            alt="info icon"
-            className={styles.icon}
-            width="12"
-            height="12"
-      />
-        Overview</Link>
+        Cat</Link>
         <Link href="/" className={styles.navLink}>
       <Image  
             src="/barChart.png"
@@ -48,7 +39,7 @@ const SidebarLayout: React.FC<ISidebarLayout> = () => {
             width="12"
             height="12"
       />
-        Reports</Link>
+        Covid Dashboard</Link>
         <Link href="/hospital" className={styles.navLink}>
       <Image  
             src="/calendar.png"
@@ -57,8 +48,8 @@ const SidebarLayout: React.FC<ISidebarLayout> = () => {
             width="12"
             height="12"
       />
-        Schedule</Link>
-        <Link href="/" className={styles.navLink}>
+        Hospital KPI Dashboard</Link>
+        <Link href="/fitness" className={styles.navLink}>
       <Image  
             src="/help.png"
             alt="Help icon"
@@ -66,7 +57,17 @@ const SidebarLayout: React.FC<ISidebarLayout> = () => {
             width="12"
             height="12"
       />
-        Help</Link>
+        Fitness Dashboard</Link>
+        <Link href="/about" className={styles.navLink}>
+      <Image  
+            src="/help.png"
+            alt="Help icon"
+            className={styles.icon}
+            width="12"
+            height="12"
+      />
+        More Dashboard (Do not click)</Link>
+
       
         <div className={styles.navFooter}>
       <Image  src="/userProfile.png"

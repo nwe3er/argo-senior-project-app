@@ -1,0 +1,107 @@
+
+.app {
+  display: flex;
+  justify-content: space-between;
+}
+
+.app > div {
+  background: #263238;
+  text-align: center;
+  color: #fff;
+}
+
+.calendar {
+  display: flex; 
+  float: left;
+  max-width: 200;
+  height: 100%
+}
+
+.steps {
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  line-height: 30px;
+}
+
+.fontheaderbold {
+  font-family: Roboto;
+  font-style: bold;
+  font-weight: 700;
+  color: #D9D9D9; 
+}
+
+.fontheaderbolddark {
+  font-family: Roboto;
+  font-style: bold;
+  font-weight: 700;
+  color: #263238; 
+}
+
+.fontheaderreg {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 700;
+  color: #D9D9D9; 
+}
+
+.fontreg {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 700;
+  color: #595959; 
+}
+
+.fontreglight {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 600;
+  color: #D9D9D9; 
+}
+
+.activitybox {
+  min-height: 100px;
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+
+  background: #D9D9D9;
+  border-radius: 10px;
+}
+
+.distancecontainer {
+  display: grid;
+  column-gap:20px;
+  grid-template-columns: auto auto auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.activitylabel {
+  text-align: center;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 600;
+  color: #D9D9D9; 
+}
+
+.weightbox {
+  width: 240px;
+  height: 40px;
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  padding: 20px;
+
+  background: #D9D9D9;
+  border-radius: 10px;
+}
+
+.overviewcontainer {
+  display: grid;
+  column-gap:20px;
+  row-gap: 50px;
+  grid-template-columns: auto auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
