@@ -60,7 +60,7 @@ const SidebarLayout: React.FC<ISidebarLayout> = () => {
         Fitness Dashboard</Link>
         <Link href="/about" className={styles.navLink}>
       <Image  
-            src="/help.png"
+            src="/info.png"
             alt="Help icon"
             className={styles.icon}
             width="12"
