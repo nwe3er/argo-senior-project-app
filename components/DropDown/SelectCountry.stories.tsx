@@ -67,7 +67,7 @@ import { Story } from '@storybook/react';
 import SelectCountry, { Props } from './SelectCountry';
 
 export default {
-  title: 'DropDowns/SelectCountry',
+  title: 'Test/DropDowns/SelectCountry',
   component: SelectCountry,
 };
 

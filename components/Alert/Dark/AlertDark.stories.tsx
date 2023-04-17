@@ -3,7 +3,7 @@ import AlertLight, { IAlert } from './AlertDark';
 import { mockBaseTemplateProps } from './AlertDark.mocks';
 
 export default {
-  title: 'Alert/AlertDark',
+  title: 'Test/Alert/AlertDark',
   component: AlertLight,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {},

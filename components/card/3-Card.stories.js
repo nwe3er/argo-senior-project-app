@@ -2,7 +2,7 @@ import React from 'react';
 import Card from '../card';
 
 export default {
-  title: 'Surfaces/Card/ShaneCard',
+  title: 'Test/Surfaces/Card/ShaneCard',
   component: Card,
 };
 
