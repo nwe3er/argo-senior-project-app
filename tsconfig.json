@@ -18,6 +18,14 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "components/radiusPieChart.stories.jsx",
+    "components/radiusPieChart.stories.jsx",
+    "components/radiusPieChart.jsx",
+    "components/radiusPieChart.jsx"
+  ],
   "exclude": ["node_modules"]
 }

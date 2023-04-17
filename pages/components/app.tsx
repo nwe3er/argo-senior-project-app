@@ -75,7 +75,7 @@ export default class App extends React.Component {
             />
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="h5">USA Regions</Typography>
+            <Typography variant="h5">USA States</Typography>
           </Grid>
           <Grid item xs={12}>
             <TopAreasTable />
@@ -84,9 +84,7 @@ export default class App extends React.Component {
             <AreasCharts />
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="h5">
-              European Countries Covid Data
-            </Typography>
+            <Typography variant="h5">European Countries Covid Data</Typography>
           </Grid>
           <Grid item xs={12}>
             <TopCountriesTable />
