@@ -4,6 +4,10 @@ import 'flexlayout-react/style/dark.css';
 import styles from '../styles/fitness-style.module.css';
 import { NextPageWithLayout } from './page';
 
+import StatusCardBlue from '@/components/StatusCardBlue/StatusCardBlue';
+import StatusCardGreen from '@/components/StatusCardGreen/StatusCardGreen';
+import StatusCardRed from '@/components/StatusCardRed/StatusCardRed';
+
 //Highcharts imports
 import * as Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
@@ -414,14 +418,40 @@ const Fitness: NextPageWithLayout = (props: HighchartsReact.Props) => {
       );
     } else if (component === 'Overview') {
       return (
-        <section style={{ padding: 20 }}>
-          <HighchartsReact
-            highcharts={Highcharts}
-            options={bar}
-            ref={chartComponentRef}
-            {...props}
-          />
-        </section>
+        <div className={styles.overviewcontainer}>
+          <div style={{ padding: 20 }}>
+            <HighchartsReact
+              highcharts={Highcharts}
+              options={bar}
+              ref={chartComponentRef}
+              {...props}
+            />
+          </div>
+
+          <div>
+            <div style={{ padding: 15 }}>
+              <StatusCardBlue
+                title="Net Carbs"
+                total="6/31g"
+                remaining="25g left"
+              />
+            </div>
+            <div style={{ padding: 15 }}>
+              <StatusCardGreen
+                title="Proteins"
+                total="78/156g"
+                remaining="78g left"
+              />
+            </div>
+            <div style={{ padding: 15 }}>
+              <StatusCardRed
+                title="Fat"
+                total="42/156g"
+                remaining="114g left"
+              />
+            </div>
+          </div>
+        </div>
       );
     } else if (component === 'Navigation') {
       return <SidebarLayout />;
