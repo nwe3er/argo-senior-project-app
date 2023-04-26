@@ -19,6 +19,17 @@ const Hospital: NextPageWithLayout = (props: HighchartsReact.Props) => {
   return (
     <Box className="bg-gradient-to-r from-cyan-500 to-blue-500">
       <Typography className={styles.header}>Hospital KPI Dashboard</Typography>
+      <Box>
+        <Typography className={styles.buttonPosition}>
+          <Button
+          color="primary"
+          onClick={action('Secondary button clicked')}
+          variant="contained"
+          >
+            Secondary
+          </Button>
+        </Typography>
+      </Box>
       <Box className={styles.display}>
         <Box className={styles.chart}>
           <HighchartsReact
@@ -54,15 +65,6 @@ const Hospital: NextPageWithLayout = (props: HighchartsReact.Props) => {
             ref={chartComponentRef}
             {...props}
           />
-        </Box>
-        <Box>
-        <Button
-          color="primary"
-          onClick={action('Secondary button clicked')}
-          variant="contained"
-        >
-          Secondary
-        </Button>
         </Box>
       </Box>
     </Box>
